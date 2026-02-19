@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Expense | Expense Tracker</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="form-page">
+<header class="app-header">
+  <span class="brand">Expense Tracker</span>
+  <div class="nav-actions">
+    <a href="/dashboard.html" class="btn-secondary" style="padding: 8px 14px; font-size: 0.9rem;">Dashboard</a>
+  </div>
+</header>
+<div class="container">
+  <h2>Add Expense</h2>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input id="title" placeholder="e.g. Lunch, Bus fare">
+  </div>
+  <div class="form-group">
+    <label for="amount">Amount (₹)</label>
+    <input id="amount" type="number" min="0" step="0.01" placeholder="0">
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select id="category">
+      <option value="Food">Food</option>
+      <option value="Travel">Travel</option>
+      <option value="Shopping">Shopping</option>
+      <option value="Bills">Bills</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input id="date" type="date">
+  </div>
+  <div class="form-actions">
+    <button type="button" class="btn-primary" onclick="addExpense()">Save</button>
+    <a href="/dashboard.html" class="btn-secondary">Cancel</a>
+  </div>
+</div>
+<script src="/js/expense.js"></script>
+<script>
+  document.getElementById("date").value = new Date().toISOString().slice(0, 10);
+</script>
+<script>
+  document.getElementById("title")?.focus();
+</script>
+
+</body>
+</html>

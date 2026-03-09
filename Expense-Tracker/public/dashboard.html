@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Expense Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <span class="brand">Expense Tracker</span>
+    <div class="nav-actions">
+      <button class="btn-dark" onclick="document.body.classList.toggle('dark-mode')">🌙</button>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="container">
+
+    <!-- OVERVIEW -->
+    <section class="dashboard-section">
+      <div class="dashboard-section-title">Overview</div>
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <h4>Total Spent</h4>
+          <div class="value" id="total">₹0</div>
+        </div>
+        <div class="summary-card">
+          <h4>This Month</h4>
+          <div class="value" id="monthTotal">₹0</div>
+        </div>
+        <div class="summary-card">
+          <h4>Expenses</h4>
+          <div class="value" id="count">0</div>
+        </div>
+        <div class="summary-card">
+          <h4>Avg / Expense</h4>
+          <div class="value" id="avgExpense">₹0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHART + BUDGET -->
+    <section class="dashboard-top">
+
+      <div class="chart-card">
+        <h4>Category-wise Spending</h4>
+        <div class="chart-wrap">
+          <canvas id="expenseChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h4>Monthly Budget</h4>
+
+        <div class="budget-set-row">
+          <input id="budgetInput" class="budget-input" type="number" placeholder="Set budget ₹">
+          <button id="budgetSaveBtn" class="btn-add">Save</button>
+        </div>
+
+        <div id="budgetHint" class="budget-hint">
+          Set a monthly budget to track spending.
+        </div>
+
+        <div id="budgetProgressWrap" class="budget-progress-wrap">
+          <div class="budget-progress-track">
+            <div id="budgetProgressBar" class="budget-progress-bar"></div>
+          </div>
+          <div id="budgetProgressText" class="budget-progress-text"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TOOLBAR -->
+    <section class="dashboard-toolbar">
+      <select id="periodFilter"></select>
+
+      <a href="/add.html" class="btn-add">＋ Add Expense</a>
+
+      <button id="exportCsvBtn" class="btn-export">Export CSV</button>
+    </section>
+
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <input id="searchExpenses" class="search-input" placeholder="Search expenses...">
+    </div>
+
+    <!-- EXPENSE LIST -->
+    <section class="expenses-section">
+      <ul id="expenseList" class="expense-list"></ul>
+
+      <div id="emptyState" class="empty-state" style="display:none;">
+        <div class="empty-state-icon">📭</div>
+        <p>No expenses found</p>
+        <div class="empty-state-hint">Try adding a new expense</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="/js/modal.js"></script>
+<script src="/js/dashboard.js"></script>
+
+<script>
+function logout() {
+  localStorage.removeItem("user");
+  location.href = "/";
+}
+</script>
+
+</body>
+</html>

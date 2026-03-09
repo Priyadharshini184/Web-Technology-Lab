@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Expense Tracker</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app admin-app">
+  <header class="app-header admin-header">
+    <span class="brand">Expense Tracker <span class="admin-badge">Admin</span></span>
+    <div class="nav-actions">
+      <a href="/dashboard.html" class="btn-secondary" style="padding: 8px 14px; font-size: 0.9rem;">User view</a>
+      <button type="button" class="btn-logout" onclick="adminLogout()">Logout</button>
+    </div>
+  </header>
+  <div class="container">
+    <section class="dashboard-section">
+      <h2 class="dashboard-section-title">System overview</h2>
+      <p class="admin-notice">Read-only. No editing of user data.</p>
+      <div class="summary-cards" id="adminSummaryCards">
+        <div class="summary-card">
+          <h4>Total users</h4>
+          <p class="value" id="adminTotalUsers">—</p>
+        </div>
+        <div class="summary-card">
+          <h4>Total expenses (count)</h4>
+          <p class="value" id="adminTotalExpenses">—</p>
+        </div>
+        <div class="summary-card">
+          <h4>Total amount (₹)</h4>
+          <p class="value" id="adminTotalAmount">—</p>
+        </div>
+      </div>
+    </section>
+    <section class="dashboard-section">
+      <h2 class="dashboard-section-title">Category-wise spending (all users)</h2>
+      <div class="chart-card">
+        <div class="chart-wrap chart-wrap--wide">
+          <canvas id="adminChart" aria-label="Category spending across system"></canvas>
+        </div>
+      </div>
+    </section>
+    <section class="dashboard-section">
+      <h2 class="dashboard-section-title">Category breakdown</h2>
+      <div class="admin-category-list" id="adminCategoryList"></div>
+    </section>
+  </div>
+</div>
+<script src="/js/admin-dashboard.js"></script>
+<script>
+function adminLogout() {
+  localStorage.removeItem("user");
+  location.href = "/admin-logout";
+}
+</script>
+</body>
+</html>

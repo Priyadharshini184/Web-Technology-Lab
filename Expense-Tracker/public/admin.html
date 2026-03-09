@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Expense Tracker</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+<div class="auth-container auth-container--admin">
+  <h2>Admin Login</h2>
+  <p class="auth-hint">Sign in with an admin account to access the admin dashboard.</p>
+  <input id="email" type="email" placeholder="Admin email" autocomplete="email">
+  <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+  <button onclick="adminLogin()">Sign in</button>
+  <p><a href="/">Back to user login</a></p>
+</div>
+<script src="/js/modal.js"></script>
+<script>
+function adminLogin() {
+  fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.error) {
+      showAlert("Invalid email or password.", "Admin login");
+      return;
+    }
+    if (data.role !== "admin") {
+      showAlert("This account is not an admin. Use the main login for user dashboard.", "Access denied");
+      return;
+    }
+    localStorage.setItem("user", JSON.stringify(data));
+    window.location.href = "/admin-dashboard";
+  })
+  .catch(() => showAlert("Something went wrong. Try again.", "Error"));
+}
+</script>
+</body>
+</html>

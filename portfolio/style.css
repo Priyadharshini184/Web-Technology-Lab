@@ -1,0 +1,28 @@
+.skills-list {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.skills-list li {
+    margin: 6px 0;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #1d4ed8;  
+}
+
+.footer {
+    background-color: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 12px;
+}
